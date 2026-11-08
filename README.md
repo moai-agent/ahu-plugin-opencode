@@ -12,7 +12,8 @@ conversation history and trust settings remain with the native CLI.
 Read [INSTALL.md](INSTALL.md) for the complete standalone build, package, install,
 smoke, update and removal sequence. Read [COMPATIBILITY.md](COMPATIBILITY.md) for
 version boundaries and [SECURITY.md](SECURITY.md) before granting runtime access.
-Customer builds and execution require Rust/Cargo and the native CLI, never Python.
+Building from source requires Rust/Cargo. Running a built package requires ahu and
+the native CLI; installation and execution require neither Cargo nor Python.
 
 No sibling checkout or ahu source tree is needed to build. The small wire-contract
 crate is a frozen vendored dependency with [provenance](vendor/PROVENANCE.json).

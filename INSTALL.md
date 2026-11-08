@@ -73,7 +73,11 @@ MCP and skill files. Stage only those reviewed files, commit them, then run
 `ahu lock --update`, review/commit `.agents/ahu/lock.md` if changed, and run `ahu lock`.
 A global Git ignore may hide generated skills; use `git check-ignore -v PATH` and
 force-add only the specific reviewed generated file. Never force-add native secrets.
-For an existing configured project, preserve its other bindings and agent choices.
+In an existing configured project, setup preserves the selected harnesses. To add
+this one, edit `.agents/ahu/config.md`: add `opencode` to
+`ahu.harness_preferences` and its exact model to `ahu.model_rankings.opencode`.
+Rerun setup, then review/commit its output and refresh the lock as above. Preserve
+the other bindings and agent choices.
 
 ## Live smoke
 
@@ -128,6 +132,10 @@ After reviewing and cleaning tasks that depend on this package:
 
 ```sh
 ahu plugins disable harness-opencode
+ahu lock --update
+git diff -- .agents/ahu/plugins/harness-opencode.md .agents/ahu/lock.md
+git add .agents/ahu/plugins/harness-opencode.md .agents/ahu/lock.md
+git commit -m 'Disable reviewed opencode runtime'
 ahu plugins remove harness-opencode
 ahu plugins list
 ```
