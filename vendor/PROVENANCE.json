@@ -1,0 +1,15 @@
+{
+  "contract": "ahu-harness-api",
+  "version": "0.1.0",
+  "source_repository": "https://github.com/moai-agent/ahu",
+  "source_commit": "bffcf8a09cd15c6704f21a40d8c43554d83646a3",
+  "source_path": "crates/ahu-harness-api",
+  "license": "MIT",
+  "files": {
+    "Cargo.toml": "56c4fd61be2fe3cbfedd86f05c7eeee25e312cc8e568d934cce3f2f2341ee09a",
+    "README.md": "9bc63c59cc984ea16d3ab6bb5fda7498fc000e04f8b524a17846c629fe082a03",
+    "examples/independent.rs": "00a624de102fd8002f379fa10f818cd9bca2cc93d6e9280558f784224b333a47",
+    "src/lib.rs": "1aeff2d5b7e875a12e130298e911138773153c9893495ff42ce72a31366c74a8",
+    "src/json.rs": "dc3d96932a8b8c82b2e7663d7f7a268ecd1916ff931f25d494f7ecd83ad866e9"
+  }
+}
