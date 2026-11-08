@@ -85,10 +85,19 @@ ahu @NAME --work-mode --prompt 'Call ahu_skills_list through the ahu MCP server,
 ```
 
 Record the returned task ID. Run `ahu result TASK --output json`; verify completion
-and the file in the reported worktree. To test native session continuity, run
-`ahu resume TASK --prompt 'Call ahu_skills_list again and confirm the existing smoke.txt.' --output json`,
-then `ahu wait TASK --output json`. Check the same native session and actual tool
-result. Mere launch or tool discovery is not a passed MCP test.
+and the file in the reported worktree. To test native session continuity, replace
+TASK below with that ID and run from the project root:
+
+```sh
+umask 077
+mkdir -p .ahu/validation
+printf '%s\n' 'Call ahu_skills_list again and confirm the existing smoke.txt.' > .ahu/validation/resume-prompt.txt
+ahu resume TASK --prompt-file .ahu/validation/resume-prompt.txt --output json
+ahu wait TASK --output json
+```
+
+Check the same native session and actual tool result. Mere launch or tool discovery
+is not a passed MCP test.
 
 Review and preserve useful output before cleanup. Remove only the accepted smoke
 artifact from the test worktree, verify `git status --porcelain` is empty there,
