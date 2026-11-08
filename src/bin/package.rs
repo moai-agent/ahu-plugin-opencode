@@ -133,6 +133,7 @@ fn package() -> Result<(), Box<dyn Error>> {
             "README.md",
             "INSTALL.md",
             "RELEASING.md",
+            "DEPENDENCIES.md",
             "SECURITY.md",
             "COMPATIBILITY.md",
             "EXTRACTION.md",

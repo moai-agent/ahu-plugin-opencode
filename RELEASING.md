@@ -7,7 +7,8 @@ push, merge, tag, GitHub Release or registry publication.
 
 1. Version changed package contents and commit the candidate. Review the exact
    source, vendored contract provenance, manifest and dependency lockfile.
-2. Run formatting, workspace tests and Clippy; build/package from a fresh clone
+2. Run formatting, workspace tests, Clippy and the online dependency check in
+   DEPENDENCIES.md; build/package from a fresh clone
    or source archive without sibling repositories. Follow INSTALL.md only.
 3. Run core conformance against this production executable and the declared core
    versions. The development command `scripts/check-core-conformance.sh` accepts
