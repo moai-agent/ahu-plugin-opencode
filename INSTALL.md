@@ -61,6 +61,9 @@ Commit the reviewed grant before activation:
 git add .agents/ahu/plugins/harness-opencode.md
 git commit -m 'Grant opencode native runtime access'
 ahu plugins enable harness-opencode
+git diff -- .agents/ahu/plugins/harness-opencode.md
+git add .agents/ahu/plugins/harness-opencode.md
+git commit -m 'Enable reviewed opencode runtime'
 ahu plugins list
 ahu setup
 ```
