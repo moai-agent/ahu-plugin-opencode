@@ -10,7 +10,10 @@ push, merge, tag, GitHub Release or registry publication.
 2. Run formatting, workspace tests and Clippy; build/package from a fresh clone
    or source archive without sibling repositories. Follow INSTALL.md only.
 3. Run core conformance against this production executable and the declared core
-   versions. Verify selective install and update without changing core or another
+   versions. The development command `scripts/check-core-conformance.sh` accepts
+   a reviewed core checkout and this staged package; it uses hermetic fixtures
+   for other providers and never needs native accounts. CI pins an exact core
+   consumer revision. Verify selective install and update without changing core or another
    plugin; preserve frozen identity for old tasks. Record unsupported modes.
 4. Verify native version/model/mode, actual MCP calls, local OTel, eval outcomes,
    resume, cancellation and owned-resource cleanup. Live skips are not passes.

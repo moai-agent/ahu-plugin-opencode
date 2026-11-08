@@ -14,7 +14,9 @@ jobs:
     env:
       CARGO_TARGET_DIR: ${{ github.workspace }}/.ahu/build/ci
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
       - run: rustup toolchain install --no-self-update
       - name: Prepare repository-local private storage
         run: |
@@ -28,3 +30,12 @@ jobs:
           umask 077
           mkdir -p .ahu/packages
           cargo run --locked --bin package -- "$PWD/.ahu/packages/ci"
+      - name: Check out pinned core conformance consumer
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: moai-agent/ahu
+          ref: c1be55431f51e5b75d5e6c5ebcb1fb33c0ca3b81
+          path: .ahu/conformance/core
+          persist-credentials: false
+      - name: Exercise the declared core compatibility
+        run: scripts/check-core-conformance.sh "$PWD/.ahu/conformance/core" "$PWD/.ahu/packages/ci/harness-opencode"
