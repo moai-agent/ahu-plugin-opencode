@@ -137,8 +137,12 @@ git diff -- .agents/ahu/plugins/harness-opencode.md .agents/ahu/lock.md
 git add .agents/ahu/plugins/harness-opencode.md .agents/ahu/lock.md
 git commit -m 'Disable reviewed opencode runtime'
 ahu plugins remove harness-opencode
+ahu lock --update
 ahu plugins list
 ```
 
-Review whether to delete its committed binding/agents or keep the disabled policy.
+Removal can change local context acceptance; the final lock refresh accepts that
+change. Review/commit `.agents/ahu/lock.md` if shared context changed, then run
+`ahu lock` before launching another agent. Review whether to delete the removed
+plugin's committed binding/agents or keep the disabled policy.
 Removal does not delete native credentials, histories or unrelated plugins.
