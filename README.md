@@ -1,40 +1,19 @@
-# ahu opencode plugin
+# ahu OpenCode plugin
 
-An independently released Rust adapter for the `opencode` native CLI. Install only
-this package when ahu needs to manage opencode. Other harness plugins are optional.
-A harness using `ahu mcp serve` solely as an MCP client does not need this adapter.
+A Rust runtime adapter that lets [ahu](https://github.com/moai-agent/ahu) launch
+and manage tasks through the native `opencode` CLI. This plugin owns native launch,
+resume, configuration inspection, and event decoding; ahu owns task state,
+worktrees, and process supervision.
 
-This repository owns native launch arguments, setup proposals, admission, account
-observations, resume integration and event normalization. ahu core owns task state,
-process supervision, worktrees, grants and acceptance of results. Native credentials,
-conversation history and trust settings remain with the native CLI.
+Follow the [installation guide](INSTALL.md) to build, stage, activate, update,
+and remove the package. You need ahu and an installed, authenticated native CLI.
+Source builds require Rust/Cargo and no sibling checkout; installed executables
+require neither Cargo nor Python. Native credentials and history stay with OpenCode.
 
-Read [INSTALL.md](INSTALL.md) for the complete standalone build, package, install,
-smoke, update and removal sequence. Read [COMPATIBILITY.md](COMPATIBILITY.md) for
-version boundaries and [SECURITY.md](SECURITY.md) before granting runtime access.
-Building from source requires Rust/Cargo. Running a built package requires ahu and
-the native CLI; installation and execution require neither Cargo nor Python.
+Check [compatibility](COMPATIBILITY.md) for supported versions and modes, and read
+[the security notice](SECURITY.md) before granting runtime access. An MCP client
+that only connects to `ahu mcp serve` does not need this adapter.
 
-No sibling checkout or ahu source tree is needed to build. The small wire-contract
-crate is a frozen vendored dependency with [provenance](vendor/PROVENANCE.json).
-Native implementation crates belong to this repository. See
-[EXTRACTION.md](EXTRACTION.md) for migration provenance.
-
-This is an unpublished local release candidate. Remote clone/tag commands become
-available only after the release is approved and published. See
-[RELEASING.md](RELEASING.md) for independent release gates.
-
-## Development
-
-```sh
-umask 077
-mkdir -p .ahu/build
-export CARGO_TARGET_DIR="$PWD/.ahu/build/development"
-cargo fmt --all --check
-cargo clippy --workspace --all-targets --locked -- -D warnings
-cargo test --workspace --locked
-```
-
-Protocol tests are hermetic. Live conformance additionally needs an installed,
-signed-in native CLI. Record unavailable modes as unverified. Keep builds,
-packages, captures and evaluation records under this repository's ignored `.ahu/`.
+Published versions belong on [GitHub Releases](https://github.com/moai-agent/ahu-plugin-opencode/releases);
+initial publication is tracked by [the release checklist](RELEASING.md).
+That guide also covers local development checks.
