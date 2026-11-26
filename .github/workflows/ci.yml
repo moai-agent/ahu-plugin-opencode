@@ -34,7 +34,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: moai-agent/ahu
-          ref: c1be55431f51e5b75d5e6c5ebcb1fb33c0ca3b81
+          ref: bde73dbdee249a0c38d1e5669efc323304b66f6c
           path: .ahu/conformance/core
           persist-credentials: false
       - name: Exercise the declared core compatibility
