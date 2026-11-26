@@ -18,7 +18,10 @@ for harness in codex claude-code antigravity opencode kiro; do
   if [ "$harness" = opencode ]; then
     cp -R "$selected" "$package"
   else
-    cargo build --locked --manifest-path "$source_dir/Cargo.toml"
+    # Linux embeds debug information in executables; keep fixture packages within
+    # the core installer’s unchanged 64 MiB per-file limit.
+    CARGO_PROFILE_DEV_DEBUG=none CARGO_PROFILE_DEV_STRIP=debuginfo \
+      cargo build --locked --manifest-path "$source_dir/Cargo.toml"
     mkdir -p "$package/bin"
     for file in Cargo.toml ahu-plugin.md README.md LICENSE SECURITY.md; do
       cp "$source_dir/$file" "$package/$file"
